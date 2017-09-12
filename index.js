@@ -14,9 +14,6 @@ restService.use(bodyParser.urlencoded({
 
 restService.use(bodyParser.json());
 
-
-
-
 restService.post('/webhook', function(req, res) {
     var command = req.body.result && req.body.result.parameters && req.body.result.parameters.command? req.body.result.parameters.command : "";	
     
@@ -25,11 +22,15 @@ restService.post('/webhook', function(req, res) {
 		res.send(JSON.stringify({ 'speech': displayOptions, 'displayText': displayOptions }));
 	} else if(command.toLowerCase().trim() === "show records") {
 		MongoClient.connect(url, function(err, db) {
-		  if (err)
+		  if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
+		       	throw err;
+			}
 		     db.collection("record").find({}).toArray(function(err, result) {
-			 if (err)
+			 if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
+			    throw err;
+			}
 			res.send(JSON.stringify({ 'speech': result, 'displayText': result }));
 			db.close();
 		  });
@@ -39,12 +40,14 @@ restService.post('/webhook', function(req, res) {
 		MongoClient.connect(url, function(err, db) {
 			if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to open record", 'displayText': "Unable to open record" }));
+			    throw err;
 			} else {
 				if(!db.getCollection('record').exists()) {
 					db.createCollection("record",  function(err, res) {
-					if (err) 
+					if (err) {
 						res.send(JSON.stringify({ 'speech': "Unable to create record", 'displayText': "Unable to create record" }));
-					else
+			            throw err;
+					} else
 					    console.log("Collection created!");
 					});
 				}
@@ -55,11 +58,14 @@ restService.post('/webhook', function(req, res) {
 		MongoClient.connect(url, function(err, db) {
 			if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to open record", 'displayText': "Unable to open record" }));
+			    throw err;
 			} else {
 				var myobj = {record: command};
 				db.collection("record").insertOne(myobj, function(err, res) {
-					if (err)
+					if (err) {
 						res.send(JSON.stringify({ 'speech': "Unable to add to record", 'displayText': "Unable to add to record" }));
+						throw err;
+					}
 					speech = command + "was added to record";
 					res.send(JSON.stringify({ 'speech': speech, 'displayText': speech }));
 					db.close();
