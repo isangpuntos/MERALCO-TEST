@@ -22,7 +22,23 @@ restService.post('/webhook', function(req, res) {
 		var displayOptions = "Say anything will added to your records. Say \"show records\" will display records";
 		res.send(JSON.stringify({ 'speech': displayOptions, 'displayText': displayOptions }));
 	} else if(command.toLowerCase().trim() === "show record") {
-		MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
+		var arr = [];
+		MongoClient.find({}, function (err, docs) {
+            console.log(docs);
+            docs.each(function (err, doc) {
+                if (doc) {
+                    console.log(doc);
+                    arr.push(doc);
+
+                } else {
+                    res.end();
+                }
+            });
+			console.log("result:" + arr);
+            res.send(JSON.stringify({ 'speech': arr, 'displayText': arr }));
+        });
+		
+		/*.connect(process.env.MONGODB_URI, function(err, db) {
 		    if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 		       	throw err;
@@ -36,7 +52,7 @@ restService.post('/webhook', function(req, res) {
 			res.send(JSON.stringify({ 'speech': result, 'displayText': result }));
 			db.close();
 		  });
-		}); 
+		}); */
 	} else if (defaultText !== ""){
 			
 		MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
