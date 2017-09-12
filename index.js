@@ -33,7 +33,6 @@ restService.post('/webhook', function(req, res) {
 		    db.collection("record").find({}, function (err, docs) {
             docs.each(function (err, doc) {
 					if (doc) {
-						console.log(doc);
 						arr.push(doc);
 
 					} else {
@@ -41,7 +40,7 @@ restService.post('/webhook', function(req, res) {
 					}
 				});
 				console.log("result:" + arr);
-				outerRes.send(JSON.stringify({ 'speech': "test", 'displayText': "test" }));
+				outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString() }));
 				//outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString()}));
 			});
 		/* .find().toArray(function(err, result) {
