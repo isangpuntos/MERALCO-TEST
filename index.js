@@ -17,6 +17,7 @@ restService.post('/webhook', function(req, res) {
     var command = req.body.result && req.body.result.parameters && req.body.result.parameters.command? req.body.result.parameters.command : "";	
     var defaultText = req.body.result && req.body.result.parameters && req.body.result.parameters.defaultText? req.body.result.parameters.defaultText : "";	
     
+	console.log(command);
 	if(command.toLowerCase().trim() === "help") {
 		var displayOptions = "Say anything will added to your records. Say \"show records\" will display records";
 		res.send(JSON.stringify({ 'speech': displayOptions, 'displayText': displayOptions }));
@@ -64,7 +65,7 @@ restService.post('/webhook', function(req, res) {
 						res.send(JSON.stringify({ 'speech': "Unable to add to record", 'displayText': "Unable to add to record" }));
 						throw err;
 					}
-					var speech = defaultText + "was added to record";
+					var speech = defaultText + " was added to record";
 					outerRes.send(JSON.stringify({ 'speech': speech, 'displayText': speech }));
 					db.close();
 				});
