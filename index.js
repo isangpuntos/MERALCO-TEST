@@ -32,6 +32,7 @@ restService.post('/webhook', function(req, res) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 			    throw err;
 			}
+			console.log("result:" + result);
 			res.send(JSON.stringify({ 'speech': result, 'displayText': result }));
 			db.close();
 		  });
