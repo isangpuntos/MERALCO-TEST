@@ -50,7 +50,7 @@ restService.post('/webhook', function(req, res) {
 			console.log("result:" + result);
 			res.send(JSON.stringify({ 'speech': result, 'displayText': result })); */
 			db.close();
-		  });
+		  //});
 		}); 
 	} else if (defaultText !== ""){
 			
