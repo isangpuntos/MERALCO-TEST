@@ -16,7 +16,7 @@ restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
     var command = req.body.result && req.body.result.parameters && req.body.result.parameters.command? req.body.result.parameters.command : "";	
-    var command = req.body.result && req.body.result.parameters && req.body.result.parameters.defaultText? req.body.result.parameters.defaultText : "";	
+    var defaultText = req.body.result && req.body.result.parameters && req.body.result.parameters.defaultText? req.body.result.parameters.defaultText : "";	
     
 	if(command.toLowerCase().trim() === "help") {
 		var displayOptions = "Say anything will added to your records. Say \"show records\" will display records";
