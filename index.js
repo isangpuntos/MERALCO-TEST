@@ -36,7 +36,7 @@ restService.post('/webhook', function(req, res) {
 			    throw err;
 			}
 			console.log("result:" + result);
-			res.send(JSON.stringify({ 'speech': result+"test", 'displayText': result+"test" }));
+			res.send(JSON.stringify({ 'speech': JSON.stringify(result), 'displayText': JSON.stringify(result) }));
 			db.close();
 		  });
 		}); 
