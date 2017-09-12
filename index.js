@@ -30,20 +30,7 @@ restService.post('/webhook', function(req, res) {
 			}
 			var arr = [];
 			var speech = "" + arr;
-		    db.collection("record").find({}, function (err, docs) {
-            docs.each(function (err, doc) {
-					if (doc) {
-						arr.push(doc);
-                        console.log("push");
-					} else {
-						res.end();
-					}
-				});
-				console.log("result:" + arr);
-				outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString() }));
-				//outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString()}));
-			});
-		/* .find().toArray(function(err, result) {
+		    db.collection("record").find().toArray(function(err, result) {
 			 if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 			    throw err;
@@ -51,7 +38,7 @@ restService.post('/webhook', function(req, res) {
 			console.log("result:" + result);
 			res.send(JSON.stringify({ 'speech': result, 'displayText': result })); */
 			db.close();
-		  //});
+		  });
 		}); 
 	} else if (defaultText !== ""){
 			
