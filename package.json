@@ -1,7 +1,7 @@
 {
-  "name": "webhook-echo-sample",
+  "name": "meralco-webhook",
   "version": "1.0.0",
-  "description": "Webhook echo sample",
+  "description": "meralco webhook",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
