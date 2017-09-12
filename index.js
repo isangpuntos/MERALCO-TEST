@@ -58,13 +58,14 @@ restService.post('/webhook', function(req, res) {
 			    throw err;
 			} else {
 				var myobj = {record: defaultText};
+				var outerRes = res;
 				db.collection("record").insertOne(myobj, function(err, res) {
 					if (err) {
 						res.send(JSON.stringify({ 'speech': "Unable to add to record", 'displayText': "Unable to add to record" }));
 						throw err;
 					}
 					var speech = defaultText + "was added to record";
-					res.send(JSON.stringify({ 'speech': speech, 'displayText': speech }));
+					outerRes.send(JSON.stringify({ 'speech': speech, 'displayText': speech }));
 					db.close();
 				});
 			}
