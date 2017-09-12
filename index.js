@@ -41,7 +41,8 @@ restService.post('/webhook', function(req, res) {
 					}
 				});
 				console.log("result:" + arr);
-				outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString()}));
+				outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString() }));
+				//outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString()}));
 			});
 		/* .find().toArray(function(err, result) {
 			 if (err) {
