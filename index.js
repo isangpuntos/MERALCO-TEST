@@ -6,7 +6,6 @@ const restService = express();
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var Promise = require('promise');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/mydb";
 
 restService.use(bodyParser.urlencoded({
     extended: true
@@ -22,7 +21,7 @@ restService.post('/webhook', function(req, res) {
 		var displayOptions = "Say anything will added to your records. Say \"show records\" will display records";
 		res.send(JSON.stringify({ 'speech': displayOptions, 'displayText': displayOptions }));
 	} else if(command.toLowerCase().trim() === "show records") {
-		MongoClient.connect(url, function(err, db) {
+		MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
 		  if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 		       	throw err;
@@ -38,7 +37,7 @@ restService.post('/webhook', function(req, res) {
 		}); 
 	} else if (defaultText !== ""){
 			
-		MongoClient.connect(url, function(err, db) {
+		MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
 			if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to open record", 'displayText': "Unable to open record" }));
 			    throw err;
@@ -56,7 +55,7 @@ restService.post('/webhook', function(req, res) {
 		    db.close();
 		});
 		
-		MongoClient.connect(url, function(err, db) {
+		MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
 			if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to open record", 'displayText': "Unable to open record" }));
 			    throw err;
