@@ -29,7 +29,6 @@ restService.post('/webhook', function(req, res) {
 			}
 			var arr = [];
 		    db.collection("record").find({}, function (err, docs) {
-            console.log(docs);
             docs.each(function (err, doc) {
 					if (doc) {
 						console.log(doc);
@@ -40,7 +39,8 @@ restService.post('/webhook', function(req, res) {
 					}
 				});
 				console.log("result:" + arr);
-				res.send(JSON.stringify({ 'speech': JSON.stringify(arr), 'displayText': JSON.stringify(arr)}));
+				speech = "" + arr;
+				res.send(JSON.stringify({ 'speech': speech, 'displayText': speech}));
 			});
 		/* .find().toArray(function(err, result) {
 			 if (err) {
