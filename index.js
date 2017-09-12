@@ -42,7 +42,7 @@ restService.post('/webhook', function(req, res) {
 				res.send(JSON.stringify({ 'speech': "Unable to open record", 'displayText': "Unable to open record" }));
 			    throw err;
 			} else {
-				if(!db.getCollection('record').exists()) {
+				if(db.collection.count() > 0) {
 					db.createCollection("record",  function(err, res) {
 					if (err) {
 						res.send(JSON.stringify({ 'speech': "Unable to create record", 'displayText': "Unable to create record" }));
