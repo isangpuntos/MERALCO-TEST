@@ -63,7 +63,7 @@ restService.post('/webhook', function(req, res) {
 						res.send(JSON.stringify({ 'speech': "Unable to add to record", 'displayText': "Unable to add to record" }));
 						throw err;
 					}
-					speech = defaultText + "was added to record";
+					var speech = defaultText + "was added to record";
 					res.send(JSON.stringify({ 'speech': speech, 'displayText': speech }));
 					db.close();
 				});
