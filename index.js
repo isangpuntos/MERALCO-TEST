@@ -17,6 +17,7 @@ restService.post('/webhook', function(req, res) {
     var command = req.body.result && req.body.result.parameters && req.body.result.parameters.command? req.body.result.parameters.command : "";	
     var defaultText = req.body.result && req.body.result.parameters && req.body.result.parameters.defaultText? req.body.result.parameters.defaultText : "";	
     
+	var outerRes = res;
 	console.log(command);
 	if(command.toLowerCase().trim() === "help") {
 		var displayOptions = "Say anything will added to your records. Say \"show records\" will display records";
@@ -28,7 +29,7 @@ restService.post('/webhook', function(req, res) {
 		       	throw err;
 			}
 			var arr = [];
-				var speech = "" + arr;
+			var speech = "" + arr;
 		    db.collection("record").find({}, function (err, docs) {
             docs.each(function (err, doc) {
 					if (doc) {
@@ -40,7 +41,7 @@ restService.post('/webhook', function(req, res) {
 					}
 				});
 				console.log("result:" + arr);
-				res.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString()}));
+				outerRes.send(JSON.stringify({ 'speech': arr.toString(), 'displayText': arr.toString()}));
 			});
 		/* .find().toArray(function(err, result) {
 			 if (err) {
@@ -75,7 +76,6 @@ restService.post('/webhook', function(req, res) {
 			    throw err;
 			} else {
 				var myobj = {record: defaultText};
-				var outerRes = res;
 				db.collection("record").insertOne(myobj, function(err, res) {
 					if (err) {
 						res.send(JSON.stringify({ 'speech': "Unable to add to record", 'displayText': "Unable to add to record" }));
