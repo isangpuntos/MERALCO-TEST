@@ -23,11 +23,11 @@ restService.post('/webhook', function(req, res) {
 		res.send(JSON.stringify({ 'speech': displayOptions, 'displayText': displayOptions }));
 	} else if(command.toLowerCase().trim() === "show record") {
 		MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
-		  if (err) {
+		    if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 		       	throw err;
 			}
-		     db.collection("record").find({}).toArray(function(err, result) {
+		    db.collection("record").find().toArray(function(err, result) {
 			 if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 			    throw err;
