@@ -39,7 +39,7 @@ restService.post('/webhook', function(req, res) {
 					}
 				});
 				console.log("result:" + arr);
-				speech = "" + arr;
+				var speech = "" + arr;
 				res.send(JSON.stringify({ 'speech': speech, 'displayText': speech}));
 			});
 		/* .find().toArray(function(err, result) {
