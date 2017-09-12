@@ -27,27 +27,28 @@ restService.post('/webhook', function(req, res) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 		       	throw err;
 			}
+			var arr = [];
 		    db.collection("record").find({}, function (err, docs) {
             console.log(docs);
             docs.each(function (err, doc) {
-                if (doc) {
-                    console.log(doc);
-                    arr.push(doc);
+					if (doc) {
+						console.log(doc);
+						arr.push(doc);
 
-                } else {
-                    res.end();
-                }
-            });
+					} else {
+						res.end();
+					}
+				});
 				console.log("result:" + arr);
 				res.send(JSON.stringify({ 'speech': arr, 'displayText': arr }));
-		});
-		/*.find().toArray(function(err, result) {
+			});
+		/* .find().toArray(function(err, result) {
 			 if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
 			    throw err;
 			}
 			console.log("result:" + result);
-			res.send(JSON.stringify({ 'speech': result, 'displayText': result }));*/
+			res.send(JSON.stringify({ 'speech': result, 'displayText': result })); */
 			db.close();
 		  });
 		}); 
