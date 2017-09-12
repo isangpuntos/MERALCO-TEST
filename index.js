@@ -40,7 +40,7 @@ restService.post('/webhook', function(req, res) {
 					}
 				});
 				console.log("result:" + arr);
-				res.send(JSON.stringify({ 'speech': arr, 'displayText': arr }));
+				res.send(JSON.stringify({ 'speech': JSON.stringify(arr), 'displayText': JSON.stringify(arr)}));
 			});
 		/* .find().toArray(function(err, result) {
 			 if (err) {
