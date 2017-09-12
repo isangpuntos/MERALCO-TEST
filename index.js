@@ -20,7 +20,7 @@ restService.post('/webhook', function(req, res) {
 	if(command.toLowerCase().trim() === "help") {
 		var displayOptions = "Say anything will added to your records. Say \"show records\" will display records";
 		res.send(JSON.stringify({ 'speech': displayOptions, 'displayText': displayOptions }));
-	} else if(command.toLowerCase().trim() === "show records") {
+	} else if(command.toLowerCase().trim() === "show record") {
 		MongoClient.connect(process.env.MONGODB_URI, function(err, db) {
 		  if (err) {
 				res.send(JSON.stringify({ 'speech': "Unable to show records", 'displayText': "Unable to show records" }));
