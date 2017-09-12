@@ -16,6 +16,7 @@ restService.use(bodyParser.json());
 
 restService.post('/webhook', function(req, res) {
     var command = req.body.result && req.body.result.parameters && req.body.result.parameters.command? req.body.result.parameters.command : "";	
+    var command = req.body.result && req.body.result.parameters && req.body.result.parameters.defaultText? req.body.result.parameters.defaultText : "";	
     
 	if(command.toLowerCase().trim() === "help") {
 		var displayOptions = "Say anything will added to your records. Say \"show records\" will display records";
@@ -35,7 +36,7 @@ restService.post('/webhook', function(req, res) {
 			db.close();
 		  });
 		}); 
-	} else {
+	} else if (defaultText !== ""){
 			
 		MongoClient.connect(url, function(err, db) {
 			if (err) {
@@ -60,13 +61,13 @@ restService.post('/webhook', function(req, res) {
 				res.send(JSON.stringify({ 'speech': "Unable to open record", 'displayText': "Unable to open record" }));
 			    throw err;
 			} else {
-				var myobj = {record: command};
+				var myobj = {record: defaultText};
 				db.collection("record").insertOne(myobj, function(err, res) {
 					if (err) {
 						res.send(JSON.stringify({ 'speech': "Unable to add to record", 'displayText': "Unable to add to record" }));
 						throw err;
 					}
-					speech = command + "was added to record";
+					speech = defaultText + "was added to record";
 					res.send(JSON.stringify({ 'speech': speech, 'displayText': speech }));
 					db.close();
 				});
