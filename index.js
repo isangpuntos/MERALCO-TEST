@@ -34,7 +34,7 @@ restService.post('/webhook', function(req, res) {
             docs.each(function (err, doc) {
 					if (doc) {
 						arr.push(doc);
-
+                        console.log("push");
 					} else {
 						res.end();
 					}
