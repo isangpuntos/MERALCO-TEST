@@ -6,6 +6,7 @@ const restService = express();
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var Promise = require('promise');
 var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/mydb";
 
 restService.use(bodyParser.urlencoded({
     extended: true
