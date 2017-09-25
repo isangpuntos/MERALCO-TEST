@@ -91,7 +91,20 @@ for (var i = 0; i < from.length; i++) {
 var fromJson = {
 				"messages": [
 					{
-
+					    "attachment": {
+						"type": "template",
+						"payload": {
+							"template_type": "button",
+							"text": "Travel from?",
+							"buttons": [
+							{
+								"type": "show_block",
+								"block_names": ["Search"],
+								"title": "Back"
+							}
+						  ]
+						}
+					  }
 					},
 					{
 					  "text":  "",
