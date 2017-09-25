@@ -114,6 +114,7 @@ var fromJson = {
 			}
 
 fromJson.messages.quick_replies = fromList;
+res.send(fromJson);
 console.log(fromJson);
 });
 
