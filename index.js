@@ -104,17 +104,14 @@ var fromJson = {
 							}
 						  ]
 						}
-					  }
-					},
-					{
-					  "text":  "",
+					  },
 					  "quick_replies": ""
 					}
 				]
 			};
 
-fromJson.messages[1].quick_replies = fromList;
-console.log(fromJson.messages[1]);
+fromJson.messages[0].quick_replies = fromList;
+console.log(fromJson.messages[0]);
 res.send(fromJson);
 console.log(fromJson);
 });
