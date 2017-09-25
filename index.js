@@ -77,6 +77,46 @@ restService.post('/webhook', function(req, res) {
 	}
 });
 
+restService.post('/test', function(req, res) {
+var from = ["Bacolod", "Bato, Leyte", "CDO", "Cebu", "Camotes", "Dipolog", "Iligan", "Ilo-ilo"]; 
+
+fromList = [];
+for (i = 0; i < from.length; i++) {
+     fromList.push({          
+	      "title": from[i],
+          "block_names": ["To"]
+	 });
+} 
+
+var fromJson = {
+				"messages": [
+					{
+					    "attachment": {
+						"type": "template",
+						"payload": {
+							"template_type": "button",
+							"text": "Travel from?",
+							"buttons": [
+							{
+								"type": "show_block",
+								"block_names": ["Search"],
+								"title": "Back"
+							}
+						  ]
+						}
+					  }
+					},
+					{
+					  "text":  "",
+					  "quick_replies": ""
+					}
+				]
+			}
+
+fromJson.messages.quick_replies = fromList;
+console.log(fromJson);
+});
+
 restService.listen((process.env.PORT || 8000), function() {
     console.log("Server up and listening");
 });
