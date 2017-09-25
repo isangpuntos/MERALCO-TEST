@@ -81,7 +81,7 @@ restService.post('/test', function(req, res) {
 var from = ["Bacolod", "Bato, Leyte", "CDO", "Cebu", "Camotes", "Dipolog", "Iligan", "Ilo-ilo"]; 
 
 var fromList = [];
-for (i = 0; i < from.length; i++) {
+for (var i = 0; i < from.length; i++) {
      fromList.push({          
 	      "title": from[i],
           "block_names": ["To"]
