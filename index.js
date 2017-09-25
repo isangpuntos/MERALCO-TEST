@@ -91,29 +91,13 @@ for (var i = 0; i < from.length; i++) {
 var fromJson = {
 				"messages": [
 					{
-					    "attachment": {
-						"type": "template",
-						"payload": {
-							"template_type": "button",
-							"text": "Travel from?",
-							"buttons": [
-							{
-								"type": "show_block",
-								"block_names": ["Search"],
-								"title": "Back"
-							}
-						  ]
-						}
-					  }
-					},
-					{
 					  "text":  "",
 					  "quick_replies": ""
 					}
 				]
 			}
 
-fromJson.messages[1].quick_replies = fromList;
+fromJson.messages[0].quick_replies = fromList;
 res.send(fromJson);
 console.log(fromJson);
 });
