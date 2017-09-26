@@ -84,9 +84,22 @@ var fromList = [];
 for (var i = 0; i < from.length; i++) {
      fromList.push({          
 	      "title": from[i],
-          "block_names": ["To"]
+              "block_names": ["To"],
+              "set_attributes": 
+              {
+                "travel_from": from[i]
+              },
 	 });
 } 
+
+fromList.push({          
+     "title": "NEXT>>",
+     "block_names": ["NEXT>>"],
+     "set_attributes": 
+       {
+          "travel_from": "NEXT>>"
+       },
+});
 
 var fromJson = {
 				"messages": [
