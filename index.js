@@ -135,7 +135,7 @@ var toArr = ["Camotes", "Iligan"];
 var toList = [];
 for (var i = 0; i < toArr.length; i++) {
      toList.push({          
-	      "title": from[i],
+	      "title": toArr[i],
               "block_names": ["Date2"],
               "set_attributes": 
               {
