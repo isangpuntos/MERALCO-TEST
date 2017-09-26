@@ -78,7 +78,7 @@ restService.post('/webhook', function(req, res) {
 });
 
 restService.post('/testFrom', function(req, res) {
-    console.log(res);
+    console.log(req);
     var from = ["Bacolod", "Bato, Leyte", "CDO", "Cebu", "Camotes", "Dipolog", "Iligan", "Ilo-ilo"]; 
 
     var fromList = [];
