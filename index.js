@@ -134,12 +134,12 @@ var toArr = ["Camotes", "Iligan"];
 
 var toList = [];
 for (var i = 0; i < toArr.length; i++) {
-     fromList.push({          
+     toList.push({          
 	      "title": from[i],
               "block_names": ["Date2"],
               "set_attributes": 
               {
-                "travel_to": from[i]
+                "travel_to": toArr[i]
               },
 	 });
 } 
