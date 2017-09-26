@@ -86,9 +86,9 @@ for (var i = 0; i < from.length; i++) {
 	      "title": from[i],
               "block_names": ["To"],
               "set_attributes": 
-              {
-                "travel_from": from[i]
-              },
+              {
+                "travel_from": from[i]
+              },
 	 });
 } 
 
@@ -96,9 +96,9 @@ fromList.push({
      "title": "NEXT>>",
      "block_names": ["NEXT>>"],
      "set_attributes": 
-       {
+      {
           "travel_from": "NEXT>>"
-       },
+      },
 });
 
 var fromJson = {
